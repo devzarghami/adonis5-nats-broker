@@ -1,0 +1,106 @@
+{
+  "name": "adonis5-nats-broker",
+  "version": "1.1.17",
+  "description": "Adonis Nats broker",
+  "main": "build/providers/NatsProvider.js",
+  "scripts": {
+    "package": "npm pack --pack-destination ~",
+    "pretest": "npm run lint",
+    "mrm": "mrm --preset=@adonisjs/mrm-preset",
+    "clean": "rm -rf build",
+    "compile": "npm run lint && npm run clean && tsc && cp -r templates build/",
+    "build": "npm run compile",
+    "prepublishOnly": "npm run build",
+    "lint": "eslint . --ext=.ts",
+    "lint:fix": "eslint . --ext=.ts --fix",
+    "format": "prettier --write .",
+    "sync-labels": "github-label-sync --labels ./node_modules/@adonisjs/mrm-preset/gh-labels.json devzarghami/adonis5-nats-broker"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/devzarghami/adonis5-nats-broker.git"
+  },
+  "keywords": [
+    "adonis",
+    "adonis5",
+    "nats",
+    "broker",
+    "microservices"
+  ],
+  "author": "hassan zarghami <dev.zarghami@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/devzarghami/adonis5-nats-broker/issues"
+  },
+  "homepage": "https://github.com/devzarghami/adonis5-nats-broker#readme",
+  "types": "build/adonis-typings/index.d.ts",
+  "typings": "build/adonis-typings/index.d.ts",
+  "devDependencies": {
+    "@adonisjs/application": "^5.1.6",
+    "@adonisjs/core": "^5.1.11",
+    "@adonisjs/mrm-preset": "^5.0.3",
+    "@adonisjs/require-ts": "^2.0.13",
+    "@types/node": "^20.4.2",
+    "del-cli": "^5.0.0",
+    "eslint": "^8.40.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-adonis": "^2.1.1",
+    "eslint-plugin-prettier": "^3.4.0",
+    "github-label-sync": "^2.0.2",
+    "japa": "^3.1.1",
+    "mrm": "^4.1.17",
+    "prettier": "^2.3.2",
+    "@types/qs": "^6.9.7",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "@japa/assert": "^1.4.1",
+    "nats": "^2.8.0"
+  },
+  "mrmConfig": {
+    "core": false,
+    "license": "MIT",
+    "services": [],
+    "minNodeVersion": "latest",
+    "probotApps": []
+  },
+  "directories": {
+    "test": "test"
+  },
+  "adonisjs": {
+    "preloads": [
+      "./start/broker"
+    ],
+    "commands": [
+      "adonis5-nats-broker/build/commands"
+    ],
+    "types": "adonis5-nats-broker",
+    "providers": [
+      "adonis5-nats-broker"
+    ],
+    "namespaces": {
+      "natsControllers": "App/Controllers/Nats",
+      "natsExceptions": "App/Exceptions",
+      "natsMiddleware": "App/Middleware"
+    },
+    "templates": {
+      "config": [
+        {
+          "src": "config.txt",
+          "dest": "nats"
+        }
+      ],
+      "start": [
+        {
+          "src": "broker.txt",
+          "dest": "broker"
+        }
+      ]
+    },
+    "env": {
+      "NATS_NAME": "nats-service-one",
+      "NATS_SERVER": "nats://localhost:4222"
+    }
+  }
+}
+

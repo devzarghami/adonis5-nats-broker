@@ -1,0 +1,8 @@
+// import Broker from '@ioc:Adonis/Addons/NatsBroker'
+
+// Broker.middleware(['userAuth'])
+// Broker.route('get.users', 'UserController.index')
+// Broker.route('post.users', 'UserController.store')
+// Broker.route('put.users.{id}', 'UserController.update')
+// Broker.route('get.users.{id}', 'UserController.show')
+// Broker.route('delete.users.{id}', 'UserController.destroy')
